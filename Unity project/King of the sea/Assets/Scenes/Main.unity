@@ -659,7 +659,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 360ea1b50c690ae45ad2fc7581d51fe8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FishController
-  swimSpeed: 8
+  swimSpeed: 12
   turnSpeed: 150
   pitchSpeed: 100
   playerInput: {fileID: 419623352}
