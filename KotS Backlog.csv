@@ -1,0 +1,31 @@
+Issue ID,Issue Type,Summary,Description,MoSCoW,Priority,Story Points,Labels,Parent,Fix Version,Value (1-5),Risk (1-5),Notes,
+1,Epic,Core movement,Responsive swimming: acceleration and movement in 3D space,Must,Highest,,code,,Prototype,5,3,Everything else depends on this feeling good.,
+2,Story,"Player can move accelerate forward, break/ decelerate, and turn","As a player, I want to be able to gain momentum easily and have simple and tight control over my turning as I make corners.
+AC: acceleration/ deceleration, car-like turning, adjustable speed; playtested and adjusted as needed",Must,Highest,5,code,1,Prototype,5,2,,
+3,Story,Player can collide with walls/ track hazards,"As a player, I want to be able to collide with walls to stop me from clipping out of bounds and these collisions should punish bad swimming by decelerating me.
+AC: proper, working collisions in test environment; ",Should,High,3,code,1,Vertical Slice,3,2,,
+4,Task,Camera follows player smoothly,AC: camera leads in movement direction; no jitter at max speed.,Must,Highest,2,code,1,Prototype,4,1,,
+5,Epic,Tide mechanic,Level environment and course changes as tide rises/ falls,Must,Highest,,design,,Prototype,5,5,"Highest risk: if this isn’t fun, the game isn’t.",
+6,Story,Lantern light reveals hidden platforms,"As a player, I want my lantern to reveal platforms so that I can find a path through the dark.
+AC: platforms fade in inside light radius; solid only while lit.",Must,Highest,8,code,5,Prototype,5,5,Prototype first to test the fun.,
+7,Story,Lantern runs out of oil,"As a player, I want limited oil so that I have to plan my route.
+AC: oil drains while lit; refill pickups; HUD shows oil level.",Should,High,5,design,5,Vertical Slice,4,3,,
+8,Task,Light radius shader,AC: soft-edged circular light mask; runs at 60 fps on lab PCs.,Must,Highest,5,code,5,Prototype,4,4,Tech risk - spike early.,
+9,Epic,Level design,"Three levels that teach, test and twist the lantern mechanic.",Must,Highest,,design,,Vertical Slice,5,3,,
+10,Story,Level 1 – tutorial,"As a new player, I want a level that teaches the lantern so that I understand it without text.
+AC: blockout complete; playtested by 3 people outside the team.",Must,Highest,5,design,9,Vertical Slice,5,2,,
+11,Story,Level 2 – oil management,AC: blockout complete; requires at least two refills to finish.,Should,High,5,design,9,Alpha,4,3,,
+12,Story,Level 3 – final challenge,AC: blockout complete; combines every mechanic.,Could,Medium,8,design,9,Alpha,3,4,Cut first if we’re behind.,
+13,Epic,Art & animation,"A consistent dark, warm-lit look.",Must,Highest,,art,,Alpha,4,3,,
+14,Task,Player character sprite and animations,"AC: idle, run, jump, climb; 12 fps; exported to engine.",Must,Highest,8,animation,13,Vertical Slice,4,3,,
+15,Task,Environment tileset,"AC: ground, wall and hidden-platform tiles; matches style guide.",Must,Highest,5,art,13,Vertical Slice,4,2,,
+16,Task,Parallax background,AC: three layers; loops seamlessly.,Could,Medium,3,art,13,Alpha,2,1,,
+17,Epic,Audio,"Sound that supports a tense, quiet atmosphere.",Should,High,,audio,,Alpha,3,2,,
+18,Task,Core sound effects,"AC: jump, land, lantern on/off, oil pickup.",Should,High,3,audio,17,Alpha,3,1,,
+19,Task,Ambient music loop,AC: 2-minute loop; volume ducks when lantern runs low.,Could,Medium,3,audio,17,Alpha,2,2,,
+20,Epic,UI & menus,Everything outside the levels.,Should,High,,code,,Module Submission,3,1,,
+21,Story,Main menu and pause menu,"As a player, I want to start, pause and quit so that the game feels finished.
+AC: start, options, quit; pause on Esc / Start.",Should,High,3,code,20,Module Submission,3,1,,
+22,Task,Volume settings,"AC: master, music and SFX sliders; saved between sessions.",Could,Medium,2,code,20,Module Submission,2,1,,
+23,Bug,Player clips through hidden platforms at high speed,Steps: sprint off ledge onto a newly lit platform. Expected: land. Actual: fall through.,Must,Highest,2,code,1,Vertical Slice,4,2,Found in playtest 1.,
+24,Story,Online leaderboard,"As a player, I want to compare times online.",Would,Lowest,13,code,20,Module Submission,1,5,Out of scope this module - recorded so we don’t re-argue it.,
