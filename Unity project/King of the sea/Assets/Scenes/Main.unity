@@ -444,7 +444,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 706692179}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -935,11 +935,11 @@ Transform:
   m_GameObject: {fileID: 1272760385}
   serializedVersion: 2
   m_LocalRotation: {x: 0.116783924, y: -0.004510166, z: 0.0015279845, w: 0.99314594}
-  m_LocalPosition: {x: -9.32, y: 1.56, z: 29.44}
+  m_LocalPosition: {x: -9.54601, y: 1.52, z: 33.31071}
   m_LocalScale: {x: 5.1856, y: 1, z: 23.328196}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1525714827}
   m_LocalEulerAnglesHint: {x: 13.414, y: -0.507, z: 0.117}
 --- !u!1 &1282301817
 GameObject:
@@ -1085,11 +1085,19 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1186600614065779895, guid: 71e651175cd95d044ada8495f4e1e5a5, type: 3}
+      propertyPath: turnSpeed
+      value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: 1186600614065779895, guid: 71e651175cd95d044ada8495f4e1e5a5, type: 3}
       propertyPath: playerInput
       value: 
       objectReference: {fileID: 541795287}
     - target: {fileID: 1186600614065779895, guid: 71e651175cd95d044ada8495f4e1e5a5, type: 3}
       propertyPath: acceleration
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 1186600614065779895, guid: 71e651175cd95d044ada8495f4e1e5a5, type: 3}
+      propertyPath: reverseAcceleration
       value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 1580765173999367985, guid: 71e651175cd95d044ada8495f4e1e5a5, type: 3}
@@ -1156,6 +1164,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Fish Rigged
       objectReference: {fileID: 0}
+    - target: {fileID: 4386067671697726116, guid: 71e651175cd95d044ada8495f4e1e5a5, type: 3}
+      propertyPath: m_Constraints
+      value: 80
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 3198728760587918171, guid: 71e651175cd95d044ada8495f4e1e5a5, type: 3}
@@ -1201,6 +1213,8 @@ Transform:
   - {fileID: 1895367951}
   - {fileID: 1780336161}
   - {fileID: 139287902}
+  - {fileID: 1868729324}
+  - {fileID: 1272760389}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1780336160
@@ -1581,11 +1595,11 @@ Transform:
   m_GameObject: {fileID: 1868729320}
   serializedVersion: 2
   m_LocalRotation: {x: -0.104607366, y: -0, z: -0, w: 0.99451363}
-  m_LocalPosition: {x: -9.23442, y: 1.83, z: 6.95}
+  m_LocalPosition: {x: -9.48043, y: 1.83, z: 10.76071}
   m_LocalScale: {x: 5.1856, y: 1, z: 23.328196}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 1525714827}
   m_LocalEulerAnglesHint: {x: -12.009, y: 0, z: 0}
 --- !u!1 &1890521441
 GameObject:
@@ -1843,5 +1857,3 @@ SceneRoots:
   - {fileID: 832575519}
   - {fileID: 1525714827}
   - {fileID: 1456829898}
-  - {fileID: 1868729324}
-  - {fileID: 1272760389}

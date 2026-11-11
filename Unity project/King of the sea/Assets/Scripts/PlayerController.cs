@@ -8,12 +8,15 @@ public class PlayerController : MonoBehaviour
 
     [Header("Movement")]
     public float acceleration = 20f;
-    public float maxSwimSpeed = 20f;         // max speed of fish
+    public float maxSwimSpeed = 20f;        // max speed of fish
     public float coastDrag = 2f;            // how quickly fish slows down after button is let go
-    public float brakeForce = 25f;           // brake strength
+    public float brakeForce = 25f;          // brake strength
+    public float reverseAcceleration = 10f; 
+    public float maxReverseSpeed = 15f;     
+    public float stopThreshold = 0.5f;      // anything below this speed we count as 'stationary' so reversing works smoothly
 
     [Header("Turning")]
-    public float turnSpeed = 100f;          // how quickly fish turns L/R (degrees per sec at full steer)
+    public float turnSpeed = 80f;          // how quickly fish turns L/R (degrees per sec at full steer)
     public float sidewaysGrip = 8f;         // higher -> less sliding
 
     [Header("Ground")]
@@ -48,12 +51,14 @@ public class PlayerController : MonoBehaviour
     {
         swimAction.Enable();
         turnAction.Enable();
+        brakeAction.Enable();
     }
 
     void OnDisable()        // disable input system actions
     {
         swimAction.Disable();
         turnAction.Disable();
+        brakeAction.Disable();
     }
 
     void Update()
@@ -74,26 +79,33 @@ public class PlayerController : MonoBehaviour
         Vector3 swimDir = Vector3.ProjectOnPlane(transform.forward, groundNormal).normalized;
         Vector3 vel = rb.linearVelocity;
         float forwardSpeed = Vector3.Dot(vel, swimDir);
-
-        if (swimHeld)       // accelerate up to top speed when button held
+        
+        // moving forward, backward, and braking
+        if (brakeHeld)
+        {
+            if (forwardSpeed > stopThreshold)       // if still moving forward, brake
+            {
+                rb.AddForce(-swimDir * brakeForce, ForceMode.Acceleration);
+            }
+            else if (forwardSpeed > -maxReverseSpeed)       // if stopped or already reversing, accelerate backwards
+            {
+                rb.AddForce(-swimDir * reverseAcceleration, ForceMode.Acceleration);
+            }
+        }
+        else if (swimHeld)      // accelerate up to top speed when button held
         {
             if (forwardSpeed < maxSwimSpeed)
             {
                 rb.AddForce(swimDir * acceleration, ForceMode.Acceleration);
             }
         }
-        else    // slow down when not held
+        else   // slow down (coast) when no button held
         {
             rb.AddForce(-swimDir * forwardSpeed * coastDrag, ForceMode.Acceleration);
         }
 
-        if (brakeHeld && forwardSpeed > 0f)     // brake
-        {
-            rb.AddForce(-swimDir * brakeForce, ForceMode.Acceleration);
-        }
-
         // steering
-        float steerFactor = Mathf.Clamp01(Mathf.Abs(forwardSpeed) / 2f);
+        float steerFactor = Mathf.Clamp(forwardSpeed / 2f, -1f, 1f);
         float yaw = turnInput.x * turnSpeed * steerFactor * Time.fixedDeltaTime;
         rb.MoveRotation(rb.rotation * Quaternion.Euler(0f, yaw, 0f));
 
