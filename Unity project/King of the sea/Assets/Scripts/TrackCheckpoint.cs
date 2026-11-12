@@ -2,15 +2,14 @@ using UnityEngine;
 
 public class TrackCheckpoint : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    /* This script handles the checkpoint trigger logic */
 
-    // Update is called once per frame
-    void Update()
+    public GameObject finishLineTrig;
+    public GameObject checkpointTrig;
+
+    void OnTriggerEnter()
     {
-        
+        finishLineTrig.SetActive(true);
+        checkpointTrig.SetActive(false);
     }
 }
