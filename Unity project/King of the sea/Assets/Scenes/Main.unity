@@ -544,7 +544,7 @@ GameObject:
   - component: {fileID: 282994926}
   - component: {fileID: 282994925}
   m_Layer: 5
-  m_Name: Panel
+  m_Name: LapTimerPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
