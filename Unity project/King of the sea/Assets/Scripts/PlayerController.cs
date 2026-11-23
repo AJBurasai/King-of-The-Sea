@@ -6,6 +6,8 @@ public class PlayerController : MonoBehaviour
 
     /*  This script handles basic movement for the playable fish */
 
+    public GameObject pausePanel;
+
     [Header("Movement")]
     public float acceleration = 20f;
     public float maxSwimSpeed = 20f;        // max speed of fish
@@ -29,9 +31,11 @@ public class PlayerController : MonoBehaviour
     private InputAction swimAction;    // swim button
     private InputAction turnAction;    // for turning with joystick
     private InputAction brakeAction;    // braking
+    private InputAction pauseAction;    // pause
     private Vector2 turnInput;
     private bool swimHeld;
     private bool brakeHeld;
+    private bool isPaused;
 
     private Rigidbody rb;
     private bool grounded;
@@ -45,6 +49,7 @@ public class PlayerController : MonoBehaviour
         swimAction = playerInput.actions["Swim"];
         turnAction = playerInput.actions["Turn"];
         brakeAction = playerInput.actions["Brake"];
+        pauseAction = playerInput.actions["Pause"];
     }
 
     void OnEnable()     // enable input system actions 
@@ -52,6 +57,7 @@ public class PlayerController : MonoBehaviour
         swimAction.Enable();
         turnAction.Enable();
         brakeAction.Enable();
+        pauseAction.Enable();
     }
 
     void OnDisable()        // disable input system actions
@@ -59,10 +65,15 @@ public class PlayerController : MonoBehaviour
         swimAction.Disable();
         turnAction.Disable();
         brakeAction.Disable();
+        pauseAction.Disable();
     }
 
     void Update()
     {
+        if (pauseAction.WasPressedThisFrame())
+        {
+            TogglePause();
+        }
         turnInput = turnAction.ReadValue<Vector2>();
         swimHeld = swimAction.IsPressed();
         brakeHeld = brakeAction.IsPressed();
@@ -112,5 +123,31 @@ public class PlayerController : MonoBehaviour
         // grippiness
         float lateralSpeed = Vector3.Dot(vel, transform.right);
         rb.AddForce(-transform.right * lateralSpeed * sidewaysGrip, ForceMode.Acceleration);
+    }
+
+    public void TogglePause()
+    {
+        if (isPaused)
+        {
+            ResumeGame();
+        }
+        else
+        {
+            PauseGame();
+        }
+    }
+
+    public void PauseGame()
+    {
+        isPaused = true;
+        pausePanel.SetActive(true);
+        Time.timeScale = 0f;
+    }
+
+    public void ResumeGame()
+    {
+        isPaused = false;
+        pausePanel.SetActive(false);
+        Time.timeScale = 1f;
     }
 }
