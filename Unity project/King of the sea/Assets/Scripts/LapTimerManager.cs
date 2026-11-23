@@ -13,9 +13,16 @@ public class LapTimerManager : MonoBehaviour
     public static float milliCount;
     public static string milliDisplay;      // for displaying milliseconds as string
 
+    public static int currentLap;       // current lap number
+
     public TextMeshProUGUI minuteBox;       // tmpro ui elements
     public TextMeshProUGUI secondBox;
     public TextMeshProUGUI milliBox;
+
+    void Start()
+    {
+        currentLap = 1;         // set current lap to 1
+    }
 
     void Update()
     {
