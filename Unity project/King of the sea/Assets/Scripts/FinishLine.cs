@@ -19,12 +19,15 @@ public class FinishLine : MonoBehaviour
 
     public string lapTime;      // lap time string to be displayed on the labels
 
-    void OnTriggerEnter()       // when the player enters the finish line trigger, update the lap time and switch triggers
+    void OnTriggerEnter(Collider other)       // when the player enters the finish line trigger, update the lap time and switch triggers
     {
-        checkpointTrig.SetActive(true);
-        finishLineTrig.SetActive(false);
-        
-        UpdateLapTime();
+        if (other.CompareTag("Player"))     // check for player tag to ensure only the player can trigger the finish line
+        {
+            checkpointTrig.SetActive(true);
+            finishLineTrig.SetActive(false);
+
+            UpdateLapTime();
+        }
     }
 
     void UpdateLapTime()        // update the lap time based on the current lap and reset the timer

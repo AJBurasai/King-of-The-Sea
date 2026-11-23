@@ -290,7 +290,7 @@ GameObject:
   - component: {fileID: 4386067671697726116}
   - component: {fileID: 1186600614065779895}
   - component: {fileID: 8412159526599020940}
-  - component: {fileID: 3870689989892930820}
+  - component: {fileID: 2583437827422532455}
   m_Layer: 0
   m_Name: Fish Rigged
   m_TagString: Untagged
@@ -426,6 +426,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 424fd8e2f2edc284f98b3ca29cc99200, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
+  pausePanel: {fileID: 0}
   acceleration: 20
   maxSwimSpeed: 20
   coastDrag: 2
@@ -470,8 +471,8 @@ MonoBehaviour:
   m_DefaultActionMap: 
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
---- !u!65 &3870689989892930820
-BoxCollider:
+--- !u!136 &2583437827422532455
+CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -488,9 +489,11 @@ BoxCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1.739924, y: 3.464943, z: 8.878656}
-  m_Center: {x: 0.04853177, y: 0.14374065, z: 0.17038059}
+  serializedVersion: 2
+  m_Radius: 0.73630613
+  m_Height: 8.817016
+  m_Direction: 2
+  m_Center: {x: 0.0052880086, y: 0.10431731, z: 0.28108692}
 --- !u!1 &5597727387272142207
 GameObject:
   m_ObjectHideFlags: 0
