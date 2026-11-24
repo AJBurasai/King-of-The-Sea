@@ -26,6 +26,7 @@ public class AIController : MonoBehaviour
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
+        waypoints = lowTidewaypointParent;
     }
     
     public void TideChanged()
