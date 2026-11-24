@@ -4,7 +4,7 @@ public class AIController : MonoBehaviour
 {
     /* this script handles simple waypoint following opponent for prototyping */
 
-    public Transform lowTidewaypointParent;        // parent object holding the waypoints as children
+    public Transform lowTideWaypointParent;        // parent object holding the waypoints as children
     public Transform highTideWaypointParent;  // parent object holding the waypoints as children when high tide
     public TideManager tideManager;          // reference to the TideManager script to check tide state
 
@@ -26,18 +26,20 @@ public class AIController : MonoBehaviour
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
-        waypoints = lowTidewaypointParent;
+        waypoints = lowTideWaypointParent;
     }
     
     public void TideChanged()
     {
+        Debug.Log("message recieved");
         if (tideManager.isHighTide == true)
         {
             waypoints = highTideWaypointParent;
+            Debug.Log("waypoints changed");
         }
         else
         {
-            waypoints = lowTidewaypointParent;
+            waypoints = lowTideWaypointParent;
         }
     }
 
@@ -45,7 +47,7 @@ public class AIController : MonoBehaviour
     {
         if (waypoints == null || waypoints.childCount == 0) return;
 
-        Transform target = lowTidewaypointParent.GetChild(currentWaypoint);        // use the current waypoint as the target to steer towards
+        Transform target = waypoints.GetChild(currentWaypoint);        // use the current waypoint as the target to steer towards
 
         Vector3 toTarget = target.position - transform.position;    // direction to the target, flattened so height differences don't matter
         toTarget.y = 0f;

@@ -22,6 +22,7 @@ public class TideManager : MonoBehaviour
         highTideRocks.SetActive(true);
         tideLabel.text = "High Tide";
         aiController.TideChanged();
+        Debug.Log("tide changed");
     }
 
     public void LowTide()
@@ -31,6 +32,7 @@ public class TideManager : MonoBehaviour
         highTideRocks.SetActive(false);
         tideLabel.text = "Low Tide";
         aiController.TideChanged();
+        Debug.Log("tide changed");
     }
 
 }
