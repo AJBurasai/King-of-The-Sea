@@ -7278,8 +7278,20 @@ MonoBehaviour:
   lapTimeManager: {fileID: 769840058}
   lowTideRocks: {fileID: 5960786307763946803}
   highTideRocks: {fileID: 654207454}
+  aiController: {fileID: 1093518600}
   isHighTide: 0
   tideLabel: {fileID: 487150504}
+--- !u!114 &1093518600 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 773522974659228998, guid: 738eff0fc5c37a4408656ac84e727849, type: 3}
+  m_PrefabInstance: {fileID: 1489532471370910633}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c79487bd6b197b447bfbb957e0bd2042, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AIController
 --- !u!1 &1102094414
 GameObject:
   m_ObjectHideFlags: 0

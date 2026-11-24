@@ -27,13 +27,19 @@ public class AIController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
     }
-    private void Update()
+    
+    public void TideChanged()
     {
-        while (tideManager.isHighTide && waypoints != highTideWaypointParent)
+        if (tideManager.isHighTide == true)
         {
-            waypoints = highTideWaypointParent; // switch to high tide waypoints
+            waypoints = highTideWaypointParent;
+        }
+        else
+        {
+            waypoints = lowTidewaypointParent;
         }
     }
+
     void FixedUpdate()
     {
         if (waypoints == null || waypoints.childCount == 0) return;

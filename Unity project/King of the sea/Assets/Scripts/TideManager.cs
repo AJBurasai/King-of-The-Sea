@@ -9,6 +9,7 @@ public class TideManager : MonoBehaviour
     public GameObject lapTimeManager;
     public GameObject lowTideRocks;
     public GameObject highTideRocks;
+    public AIController aiController;
 
     public bool isHighTide = false; // flag to track the current tide state
 
@@ -20,6 +21,7 @@ public class TideManager : MonoBehaviour
         lowTideRocks.SetActive(false);
         highTideRocks.SetActive(true);
         tideLabel.text = "High Tide";
+        aiController.TideChanged();
     }
 
     public void LowTide()
@@ -28,6 +30,7 @@ public class TideManager : MonoBehaviour
         lowTideRocks.SetActive(true);
         highTideRocks.SetActive(false);
         tideLabel.text = "Low Tide";
+        aiController.TideChanged();
     }
 
 }
