@@ -13,6 +13,10 @@ public class LapTimerManager : MonoBehaviour
     public static float milliCount;
     public static string milliDisplay;      // for displaying milliseconds as string
 
+    public static int minuteCountFinal;     // variables for final time at end of race
+    public static int secondCountFinal;
+    public static float milliCountFinal;
+
     public static int currentLap;       // current lap number
 
     public TextMeshProUGUI minuteBox;       // tmpro ui elements
@@ -27,11 +31,15 @@ public class LapTimerManager : MonoBehaviour
     void Update()
     {
         milliCount += Time.deltaTime * 10;      // count milliseconds based on deltatime *10
+        milliCountFinal += Time.deltaTime * 10;
 
         if (milliCount >= 10)       // reset milli when reaching 10
         {
             milliCount -= 10;       // reset counter
             secondCount++;
+
+            milliCountFinal -= 10;
+            secondCountFinal++;
         }
 
         milliDisplay = ((int)milliCount).ToString();        // cast milli as int, then string, then display on label
@@ -50,6 +58,9 @@ public class LapTimerManager : MonoBehaviour
         {
             secondCount -= 60;
             minuteCount++;
+
+            secondCountFinal -= 60;
+            minuteCountFinal++;
         }
 
         if (minuteCount <= 9)

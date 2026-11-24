@@ -15,9 +15,12 @@ public class FinishLine : MonoBehaviour
     public TextMeshProUGUI lap2TimeLabel;
     public TextMeshProUGUI lap3TimeLabel;
 
+    public TextMeshProUGUI finalTimeLabel;      // label for final time at end of race
+
     public GameObject winScreen;       // win screen panel to be displayed when the player finishes the race
 
     public string lapTime;      // lap time string to be displayed on the labels
+    public string finalTime;
 
     void OnTriggerEnter(Collider other)       // when the player enters the finish line trigger, update the lap time and switch triggers
     {
@@ -63,10 +66,11 @@ public class FinishLine : MonoBehaviour
         LapTimerManager.currentLap++;        // increment current lap
     }
 
-    void WinScreen()       
+    public void WinScreen()       // show win screen, create string of final time, print on screen
     {
         winScreen.SetActive(true);
+        finalTime = LapTimerManager.minuteCountFinal.ToString("00") + ":" + LapTimerManager.secondCountFinal.ToString("00") + "." + ((int)LapTimerManager.milliCountFinal).ToString("0");
+        finalTimeLabel.text = finalTime;
         Time.timeScale = 0f;
     }
-
 }
