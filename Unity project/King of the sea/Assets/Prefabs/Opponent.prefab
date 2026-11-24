@@ -46,7 +46,7 @@ GameObject:
   - component: {fileID: 5201409517449190870}
   - component: {fileID: 2567267669054678616}
   - component: {fileID: 773522974659228998}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Opponent
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -203,7 +203,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c79487bd6b197b447bfbb957e0bd2042, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AIController
-  waypointParent: {fileID: 0}
+  lowTidewaypointParent: {fileID: 0}
+  highTideWaypointParent: {fileID: 0}
+  tideManager: {fileID: 0}
   acceleration: 20
   maxSpeed: 21
   turnSpeed: 80

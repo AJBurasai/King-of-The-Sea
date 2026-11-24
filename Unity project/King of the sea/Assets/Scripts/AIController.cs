@@ -4,7 +4,9 @@ public class AIController : MonoBehaviour
 {
     /* this script handles simple waypoint following opponent for prototyping */
 
-    public Transform waypointParent;        // parent object holding the waypoints as children
+    public Transform lowTidewaypointParent;        // parent object holding the waypoints as children
+    public Transform highTideWaypointParent;  // parent object holding the waypoints as children when high tide
+    public TideManager tideManager;          // reference to the TideManager script to check tide state
 
     [Header("Movement")]            // movement very similar to player
     public float acceleration = 20f;
@@ -19,17 +21,24 @@ public class AIController : MonoBehaviour
 
     private Rigidbody rb;
     private int currentWaypoint = 0;
+    private Transform waypoints;        // current set of waypoints to follow, changes based on tide state
 
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
     }
-
+    private void Update()
+    {
+        while (tideManager.isHighTide && waypoints != highTideWaypointParent)
+        {
+            waypoints = highTideWaypointParent; // switch to high tide waypoints
+        }
+    }
     void FixedUpdate()
     {
-        if (waypointParent == null || waypointParent.childCount == 0) return;
+        if (waypoints == null || waypoints.childCount == 0) return;
 
-        Transform target = waypointParent.GetChild(currentWaypoint);        // use the current waypoint as the target to steer towards
+        Transform target = lowTidewaypointParent.GetChild(currentWaypoint);        // use the current waypoint as the target to steer towards
 
         Vector3 toTarget = target.position - transform.position;    // direction to the target, flattened so height differences don't matter
         toTarget.y = 0f;
@@ -37,7 +46,7 @@ public class AIController : MonoBehaviour
         
         if (toTarget.magnitude < waypointRadius)    // move on to the next waypoint, looping back to the start
         {
-            currentWaypoint = (currentWaypoint + 1) % waypointParent.childCount;
+            currentWaypoint = (currentWaypoint + 1) % waypoints.childCount;
             return;
         }
 
@@ -61,13 +70,13 @@ public class AIController : MonoBehaviour
 
     void OnDrawGizmos()         // draws the path in the Scene view so you can see it
     {
-        if (waypointParent == null) return;
+        if (waypoints == null) return;
 
         Gizmos.color = Color.yellow;
-        for (int i = 0; i < waypointParent.childCount; i++)
+        for (int i = 0; i < waypoints.childCount; i++)
         {
-            Vector3 a = waypointParent.GetChild(i).position;
-            Vector3 b = waypointParent.GetChild((i + 1) % waypointParent.childCount).position;
+            Vector3 a = waypoints.GetChild(i).position;
+            Vector3 b = waypoints.GetChild((i + 1) % waypoints.childCount).position;
             Gizmos.DrawSphere(a, 0.5f);
             Gizmos.DrawLine(a, b);
         }
