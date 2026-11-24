@@ -8,14 +8,14 @@ public class AIController : MonoBehaviour
 
     [Header("Movement")]            // movement very similar to player
     public float acceleration = 20f;
-    public float maxSpeed = 21f;            // keep slightly above player speed so they can catch up as player takes shortcut
+    public float maxSpeed = 25f;            // keep slightly above player speed so they can catch up as player takes shortcut
     public float turnSpeed = 80f;
     public float sidewaysGrip = 8f;
     public float coastDrag = 2f;
 
     [Header("Path following")]     
     public float waypointRadius = 4f;       // how close counts as "reached"
-    public float cornerSlowdown = 0.5f;     // speed multiplier on sharp turns (0.5 = half speed)
+    public float cornerSlowdown = 0.5f;     // speed multiplier on sharp turns
 
     private Rigidbody rb;
     private int currentWaypoint = 0;
@@ -29,7 +29,7 @@ public class AIController : MonoBehaviour
     {
         if (waypointParent == null || waypointParent.childCount == 0) return;
 
-        Transform target = waypointParent.GetChild(currentWaypoint);
+        Transform target = waypointParent.GetChild(currentWaypoint);        // use the current waypoint as the target to steer towards
 
         Vector3 toTarget = target.position - transform.position;    // direction to the target, flattened so height differences don't matter
         toTarget.y = 0f;
