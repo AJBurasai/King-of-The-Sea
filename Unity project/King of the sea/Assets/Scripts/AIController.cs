@@ -31,11 +31,9 @@ public class AIController : MonoBehaviour
     
     public void TideChanged()
     {
-        Debug.Log("message recieved");
         if (tideManager.isHighTide == true)
         {
             waypoints = highTideWaypointParent;
-            Debug.Log("waypoints changed");
         }
         else
         {
